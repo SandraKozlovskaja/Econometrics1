@@ -3,184 +3,185 @@ title: "Task 6"
 author: Sandra Kozlovskaja
 output: html_document
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 # Swirl rezultatai
 
-Uşduotis: padaryti duomenø analizæ, kurie yra faile task6. Nuskaitome duomenys:
-```{r
-> x = read.csv('C:/Users/Administrator/Desktop/destytojo_Econometrics1/Econometrics1/task6/R_programing_swirlResults.csv', stringsAsFactors = FALSE)
-> unique(x$user)
+UÅ¾duotis: padaryti duomenÅ³ analizÄ™, kurie yra faile task6. Nuskaitome duomenys:
+```{r}
+x = read.csv('C:/Users/Administrator/Desktop/destytojo_Econometrics1/Econometrics1/task6/R_programing_swirlResults.csv', stringsAsFactors = FALSE)
+unique(x$user)
 ```
-Matome visus vartotojus, ëjusius kursà. Reikia iğvalyti duomenys nuo "ğiukğliø". Pavyzdşiui, mums nereikalingi duomenys, gauti, kai programa buvo testuojama (user: aaa, testas, 1vbutkus). Tada á naujà kintamàjá "x.gd" árağome tik reikalingus analizei duomenys, t.y. visus be aaa, testas ir 1vbutkus:
-```{r
-> x.gd <- subset(x, user != "aaa" & user != "testas" & user != "1vbutkus")
-> unique(x.gd$user)
+Matome visus vartotojus, Ä—jusius kursÄ…. Reikia iÅ¡valyti duomenys nuo "Å¡iukÅ¡liÅ³". PavyzdÅ¾iui, mums nereikalingi duomenys, gauti, kai programa buvo testuojama (user: aaa, testas, 1vbutkus). Tada Ä¯ naujÄ… kintamÄ…jÄ¯ "x.gd" Ä¯raÅ¡ome tik reikalingus analizei duomenys, t.y. visus be aaa, testas ir 1vbutkus:
+```{r}
+x.gd <- subset(x, user != "aaa" & user != "testas" & user != "1vbutkus")
+unique(x.gd$user)
 ```
-Toliau şiûrime ar nëra tø paèiø vartotojø pasirağiusiais skirtingais user_name'ais. Matome kelis skirtingus user'ius, bet şinome, kad tai yra tas pats şmogus. Iğskiriame juos:
-```{r
-> gyse <- subset(x.gd, user == "gyse3054" | user == "gyse")
-> rokasaleks <- subset(x.gd, user == "rokasaleks" | user == "rokasalek")
-> juste <- subset(x.gd, user == "j" | user == "ju" | user == "juste" | user == "Juste")
+Toliau Å¾iÅ«rime ar nÄ—ra tÅ³ paÄiÅ³ vartotojÅ³ pasiraÅ¡iusiais skirtingais user_name'ais. Matome kelis skirtingus user'ius, bet Å¾inome, kad tai yra tas pats Å¾mogus. IÅ¡skiriame juos:
+```{r}
+gyse <- subset(x.gd, user == "gyse3054" | user == "gyse")
+rokasaleks <- subset(x.gd, user == "rokasaleks" | user == "rokasalek")
+juste <- subset(x.gd, user == "j" | user == "ju" | user == "juste" | user == "Juste")
 ```
-Iğnagrinëkime juos atskirai:
-```{r
-> unique(gyse$lesson_name)
-> g <- split(gyse, gyse$skipped)
-> head(g$`TRUE`)
-> nrow(g$`TRUE`)
+IÅ¡nagrinÄ—kime juos atskirai:
+```{r}
+unique(gyse$lesson_name)
+g <- split(gyse, gyse$skipped)
+head(g$`TRUE`)
+nrow(g$`TRUE`)
 ```
-User "gyse" padarë visas 16 uşduoèiø ir iğviso praleido (skipped) 96 klausimus, iğ kuriø èia matome 6 (pvz:  Logic 21, Functions 8), panaudojæ komandà "head(g`TRUE`)". Norint pamatyti visus praleistus reikëtø naudoti komandà "g`TRUE`".
-```{r
-> unique(rokasaleks$lesson_name)
-> r <- split(rokasaleks, rokasaleks$skipped)
-> head(r$`TRUE`)
-> nrow(r$`TRUE`)
+User "gyse" padarÄ— visas 16 uÅ¾duoÄiÅ³ ir iÅ¡viso praleido (skipped) 96 klausimus, iÅ¡ kuriÅ³ Äia matome 6 (pvz:  Logic 21, Functions 8), panaudojÄ™ komandÄ… "head(g`TRUE`)". Norint pamatyti visus praleistus reikÄ—tÅ³ naudoti komandÄ… "g`TRUE`".
+```{r}
+unique(rokasaleks$lesson_name)
+r <- split(rokasaleks, rokasaleks$skipped)
+head(r$`TRUE`)
+nrow(r$`TRUE`)
 ```
-User "rokasaleks" padarë visas 16 uşduoèiø ir iğviso praleido (skipped) 114 klausimø, iğ kuriø èia matome 6 (pvz: Workspace and Files 1, Workspace and Files 22).  Norint pamatyti visus praleistus reikëtø naudoti komandà "r`TRUE`".
-```{r
-> unique(juste$lesson_name)
-> j <- split(juste, juste$skipped)
-> j$`TRUE`
+User "rokasaleks" padarÄ— visas 16 uÅ¾duoÄiÅ³ ir iÅ¡viso praleido (skipped) 114 klausimÅ³, iÅ¡ kuriÅ³ Äia matome 6 (pvz: Workspace and Files 1, Workspace and Files 22).  Norint pamatyti visus praleistus reikÄ—tÅ³ naudoti komandÄ… "r`TRUE`".
+```{r}
+unique(juste$lesson_name)
+j <- split(juste, juste$skipped)
+j$`TRUE`
 ```
-User "juste" padarë tik pirmas 9 uşduotis ir praleido (skipped) 2 klausimus: Subsetting Vectors 21 ir Matrices and Data Frames 33.
+User "juste" padarÄ— tik pirmas 9 uÅ¾duotis ir praleido (skipped) 2 klausimus: Subsetting Vectors 21 ir Matrices and Data Frames 33.
 
-Dabar iğnagrinëkime likusius vartotojus:
-```{r
-> y<-subset(x.gd, user != "gyse" & user != "gyse3054" & user != "rokasalek" & user != "rokasaleks" & user != "j" & user != "ju" & user !="Juste" & user != "juste")
-> m <- split(y, y$skipped)
-> y.skip.true <- m$`TRUE`
-> unique(y.skip.true$user)
+Dabar iÅ¡nagrinÄ—kime likusius vartotojus:
+```{r}
+y<-subset(x.gd, user != "gyse" & user != "gyse3054" & user != "rokasalek" & user != "rokasaleks" & user != "j" & user != "ju" & user !="Juste" & user != "juste")
+m <- split(y, y$skipped)
+y.skip.true <- m$`TRUE`
+unique(y.skip.true$user)
 ```
-Identifikavome vartotojus, kurie praleidinëjo klausimus. Patikrinkime, ar jie ëjo visas uşduotis:
-```{r
-> Sandra <- subset(x.gd, user == "SandraKozlovskaja")
-> unique(Sandra$lesson_name)
-> s<- split(Sandra, Sandra$skipped)
-> nrow(s$`TRUE`)
-> ojautakaite <- subset(x.gd, user == "ojautakaite")
-> o <- split(ojautakaite, ojautakaite$skipped)
-> nrow(s$`TRUE`)
-> sindeivydas <- subset(x.gd, user == "sindeivydas")
-> unique(sindeivydas$lesson_name)
-> sin <- split(sindeivydas, sindeivydas$skipped)
-> nrow(sin$`TRUE`)
-> Domante <- subset(x.gd, user == "Domante Bulovaite")
-> unique(Domante$lesson_name)
-> domante <- split(Domante, Domante$skipped)
-> nrow(domante$`TRUE`)
-> Greta <- subset(x.gd, user == "Greta")
-> unique(Greta$lesson_name)
-> greta <- split(Greta, Greta$skipped)
-> nrow(greta$`TRUE`)
-> Karolina <- subset(x.gd, user == "Karolina")
-> unique(Karolina$lesson_name)
-> karolina <- split(Karolina, Karolina$skipped)
-> nrow(karolina$`TRUE`)
-> kestous <- subset(x.gd, user == "kestous")
-> unique(kestous$lesson_name)
-> kest <- split(kestous, kestous$skipped)
-> nrow(kest$`TRUE`)
-> ogadova <- subset(x.gd, user == "ogadova")
-> unique(ogadova$lesson_name)
-> oga <- split(ogadova, ogadova$skipped)
-> nrow(oga$`TRUE`)
-> Raigardas <- subset(x.gd, user == "Raigardas")
-> unique(Raigardas$lesson_name)
-> raigardas <- split(Raigardas, Raigardas$skipped)
-> nrow(raigardas$`TRUE`)
-> Dariukxas <- subset(x.gd, user == "Dariukxas")
-> unique(Dariukxas$lesson_name)
-> Darius <- split(Dariukxas, Dariukxas$skipped)
-> nrow(Darius$`TRUE`)
-> gretajes <- subset(x.gd, user == "gretajes")
-> unique(gretajes$lesson_name)
-> gretaj <- split(gretajes, gretajes$skipped)
-> nrow(gretaj$`TRUE`)
-> simonalevickaite <- subset(x.gd, user == "simonalevickaite")
-> unique(simonalevickaite$lesson_name)
-> simonal <- split(simonalevickaite, simonalevickaite$skipped)
-> nrow(simonal$`TRUE`)
+Identifikavome vartotojus, kurie praleidinÄ—jo klausimus. Patikrinkime, ar jie Ä—jo visas uÅ¾duotis:
+```{r}
+Sandra <- subset(x.gd, user == "SandraKozlovskaja")
+unique(Sandra$lesson_name)
+s<- split(Sandra, Sandra$skipped)
+nrow(s$`TRUE`)
+ojautakaite <- subset(x.gd, user == "ojautakaite")
+o <- split(ojautakaite, ojautakaite$skipped)
+nrow(s$`TRUE`)
+sindeivydas <- subset(x.gd, user == "sindeivydas")
+unique(sindeivydas$lesson_name)
+sin <- split(sindeivydas, sindeivydas$skipped)
+nrow(sin$`TRUE`)
+Domante <- subset(x.gd, user == "Domante Bulovaite")
+unique(Domante$lesson_name)
+domante <- split(Domante, Domante$skipped)
+nrow(domante$`TRUE`)
+Greta <- subset(x.gd, user == "Greta")
+unique(Greta$lesson_name)
+greta <- split(Greta, Greta$skipped)
+nrow(greta$`TRUE`)
+Karolina <- subset(x.gd, user == "Karolina")
+unique(Karolina$lesson_name)
+karolina <- split(Karolina, Karolina$skipped)
+nrow(karolina$`TRUE`)
+kestous <- subset(x.gd, user == "kestous")
+unique(kestous$lesson_name)
+kest <- split(kestous, kestous$skipped)
+nrow(kest$`TRUE`)
+ogadova <- subset(x.gd, user == "ogadova")
+unique(ogadova$lesson_name)
+oga <- split(ogadova, ogadova$skipped)
+nrow(oga$`TRUE`)
+Raigardas <- subset(x.gd, user == "Raigardas")
+unique(Raigardas$lesson_name)
+raigardas <- split(Raigardas, Raigardas$skipped)
+nrow(raigardas$`TRUE`)
+Dariukxas <- subset(x.gd, user == "Dariukxas")
+unique(Dariukxas$lesson_name)
+Darius <- split(Dariukxas, Dariukxas$skipped)
+nrow(Darius$`TRUE`)
+gretajes <- subset(x.gd, user == "gretajes")
+unique(gretajes$lesson_name)
+gretaj <- split(gretajes, gretajes$skipped)
+nrow(gretaj$`TRUE`)
+simonalevickaite <- subset(x.gd, user == "simonalevickaite")
+unique(simonalevickaite$lesson_name)
+simonal <- split(simonalevickaite, simonalevickaite$skipped)
+nrow(simonal$`TRUE`)
 ```
-User "SandraKozlovskaja" atliko visas 16 uşduoèiø, bet praleido 16 klausimø, norint pamatyti juos visus reikëtø naudoti komandà s`TRUE`. User "ojautakaite" atliko 15 uşduoèiø ir praleido 8 klausimus, norint pamatyti juos visus reikëtø naudoti komandà o`TRUE`. User "sindeivydas" atliko visas 16 uşduoèiø, bet praleido 18 klausimø, norint pamatyti juos visus reikëtø naudoti komandà sin`TRUE`. User "Domante Bulovaite" atliko visas 16 uşduoèiø, bet praleido 11 klausimø, norint pamatyti juos visus reikëtø naudoti komandà domante`TRUE`. User "Greta" atliko visas 16 uşduoèiø, bet praleido 24 klausimus, norint pamatyti juos visus reikëtø naudoti komandà greta`TRUE`. User "Karolina" atliko visas 16 uşduoèiø, bet praleido 76 klausimø, norint pamatyti juos visus reikëtø naudoti komandà karolina`TRUE`. User "kestous" atliko visas 16 uşduoèiø, bet praleido 300 klausimø, norint pamatyti juos visus reikëtø naudoti komandà kest`TRUE`. User  "ogadova" atliko visas 16 uşduoèiø, bet praleido 153 klausimus, norint pamatyti juos visus reikëtø naudoti komandà oga`TRUE`. User "Raigardas" atliko visas 16 uşduoèiø, bet praleido 9 klausimus, norint pamatyti juos visus reikëtø naudoti komandà raigardas`TRUE`. User "Dariukxas" atliko visas 16 uşduoèiø, bet praleido 30 klausimø, norint pamatyti juos visus reikëtø naudoti komandà Darius`TRUE`. User "gretajes" atliko 9 uşduotis ir praleido 2 klausimus, norint pamatyti juos reikëtø naudoti komandà gretaj`TRUE`. User "simonalevickaite" atliko 15 uşduoèiø ir praleido 5 klausimus, norint pamatyti juos reikëtø naudoti komandà simonal`TRUE`.
+User "SandraKozlovskaja" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 16 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… s`TRUE`. User "ojautakaite" atliko 15 uÅ¾duoÄiÅ³ ir praleido 8 klausimus, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… o`TRUE`. User "sindeivydas" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 18 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… sin`TRUE`. User "Domante Bulovaite" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 11 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… domante`TRUE`. User "Greta" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 24 klausimus, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… greta`TRUE`. User "Karolina" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 76 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… karolina`TRUE`. User "kestous" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 300 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… kest`TRUE`. User  "ogadova" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 153 klausimus, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… oga`TRUE`. User "Raigardas" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 9 klausimus, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… raigardas`TRUE`. User "Dariukxas" atliko visas 16 uÅ¾duoÄiÅ³, bet praleido 30 klausimÅ³, norint pamatyti juos visus reikÄ—tÅ³ naudoti komandÄ… Darius`TRUE`. User "gretajes" atliko 9 uÅ¾duotis ir praleido 2 klausimus, norint pamatyti juos reikÄ—tÅ³ naudoti komandÄ… gretaj`TRUE`. User "simonalevickaite" atliko 15 uÅ¾duoÄiÅ³ ir praleido 5 klausimus, norint pamatyti juos reikÄ—tÅ³ naudoti komandÄ… simonal`TRUE`.
 
 Dabar patikriname tuos, kurie nepraleido nei vieno klausimo:
-```{r
-> y.skip.false.only<-subset(y, user != "SandraKozlovskaja" & user != "ojautakaite" & user != "sindeivydas" & user != "Domante Bulovaite" & user != "Greta" & user != "Karolina" & user != "kestous" & user != "ogadova" & user != "Raigardas" & user != "Dariukxas" & user != "gretajes" & user != "simonalevickaite")
-> unique(y.skip.false.only$user)
+```{r}
+y.skip.false.only<-subset(y, user != "SandraKozlovskaja" & user != "ojautakaite" & user != "sindeivydas" & user != "Domante Bulovaite" & user != "Greta" & user != "Karolina" & user != "kestous" & user != "ogadova" & user != "Raigardas" & user != "Dariukxas" & user != "gretajes" & user != "simonalevickaite")
+unique(y.skip.false.only$user)
 ```
 Tada belieka patikrinti ar jie atliko visas pamokas:
-```{r
-> emru<-subset(y.skip.false.only, user == "emru3000")
-> unique(emru$lesson_name)
-> aipe<-subset(y.skip.false.only, user == "aipe00")
-> unique(aipe$lesson_name)
-> simona1234<-subset(y.skip.false.only, user == "simona1234")
-> unique(simona1234$lesson_name)
-> zagnyte<-subset(y.skip.false.only, user == "zagnyte")
-> unique(zagnyte$lesson_name)
+```{r}
+emru<-subset(y.skip.false.only, user == "emru3000")
+unique(emru$lesson_name)
+aipe<-subset(y.skip.false.only, user == "aipe00")
+unique(aipe$lesson_name)
+simona1234<-subset(y.skip.false.only, user == "simona1234")
+unique(simona1234$lesson_name)
+zagnyte<-subset(y.skip.false.only, user == "zagnyte")
+unique(zagnyte$lesson_name)
 
 ```
 
-User'iai "emru3000","simona1234","aipe00" ir "zagnyte" pilnai atliko 16 uşduoèiø, nepraleidus nei vieno klausimo.
-```{r
-> Dominykas<-subset(y.skip.false.only, user == "Dominykas")
-> unique(Dominykas$lesson_name)
-> MildaPie<-subset(y.skip.false.only, user == "MildaPie")
-> unique(MildaPie$lesson_name)
-> edba<-subset(y.skip.false.only, user == "edba2903")
-> unique(edba$lesson_name)
-> Danielius<-subset(y.skip.false.only, user == "Danielius")
-> unique(Danielius$lesson_name)
+User'iai "emru3000","simona1234","aipe00" ir "zagnyte" pilnai atliko 16 uÅ¾duoÄiÅ³, nepraleidus nei vieno klausimo.
+```{r}
+Dominykas<-subset(y.skip.false.only, user == "Dominykas")
+unique(Dominykas$lesson_name)
+MildaPie<-subset(y.skip.false.only, user == "MildaPie")
+unique(MildaPie$lesson_name)
+edba<-subset(y.skip.false.only, user == "edba2903")
+unique(edba$lesson_name)
+Danielius<-subset(y.skip.false.only, user == "Danielius")
+unique(Danielius$lesson_name)
 ```
-User "Dominykas" nepraleido nei vieno klausimo, bet atliko tik vienà uşduotá. User "MildaPie" nepraleido nei vieno klausimo, bet atliko iğviso 15 uşduoèiø. User "edba2903" nepraleido nei vieno klausimo, bet atliko 11 uşduoèiø. User "Danielius" nepraleido nei vieno klausimo, bet atliko tik vienà uşduotá.
+User "Dominykas" nepraleido nei vieno klausimo, bet atliko tik vienÄ… uÅ¾duotÄ¯. User "MildaPie" nepraleido nei vieno klausimo, bet atliko iÅ¡viso 15 uÅ¾duoÄiÅ³. User "edba2903" nepraleido nei vieno klausimo, bet atliko 11 uÅ¾duoÄiÅ³. User "Danielius" nepraleido nei vieno klausimo, bet atliko tik vienÄ… uÅ¾duotÄ¯.
 
-Kiti ádomûs klausimai. Kiek vidutiniğkai laiko uştrunka atlikti uşduotis?
-```{r
-> mean(x.gd$takeTime)
+Kiti Ä¯domÅ«s klausimai. Kiek vidutiniÅ¡kai laiko uÅ¾trunka atlikti uÅ¾duotis?
+```{r}
+mean(x.gd$takeTime)
 ```
-Tiek vidutiniğkai laiko skyrë vartotojai, pagal jø paèiø pateiktà laikà.
+Tiek vidutiniÅ¡kai laiko skyrÄ— vartotojai, pagal jÅ³ paÄiÅ³ pateiktÄ… laikÄ….
 
-Ar galima pasitikëti şmoniø deklaruojamu laiku?
-```{r
-> x.gd<-x.gd[order(x.gd$user),]
+Ar galima pasitikÄ—ti Å¾moniÅ³ deklaruojamu laiku?
+```{r}
+x.gd<-x.gd[order(x.gd$user),]
 ```
-Iğrikiavome duomenys iğ eilës, kad visos vartotojo eilutës bûtø vienoje vietoje, tada lengva stebëti pagal stulpelius "takeTime" ir "datetime", kad vartotojø pateikti laikai skiriasi nuo sistemos fiksuotø laikø. Todël neverta pasitikëti şmoniø deklaruojamu laiku.
+IÅ¡rikiavome duomenys iÅ¡ eilÄ—s, kad visos vartotojo eilutÄ—s bÅ«tÅ³ vienoje vietoje, tada lengva stebÄ—ti pagal stulpelius "takeTime" ir "datetime", kad vartotojÅ³ pateikti laikai skiriasi nuo sistemos fiksuotÅ³ laikÅ³. TodÄ—l neverta pasitikÄ—ti Å¾moniÅ³ deklaruojamu laiku.
 
-Kokios uşduotis buvo sunkiausios?
-Pagal laikà:
-```{r
-> sunk.pagal.laika <- subset(x.gd, x.gd$takeTime > mean(x.gd$takeTime))
-> table(sunk.pagal.laika$lesson_name)
+Kokios uÅ¾duotis buvo sunkiausios?
+Pagal laikÄ…:
+```{r}
+sunk.pagal.laika <- subset(x.gd, x.gd$takeTime > mean(x.gd$takeTime))
+table(sunk.pagal.laika$lesson_name)
 ```
-Iğvestos uşduotys, kurioms laiko prireikë daugiau paskaièiuoto vidurkio.
+IÅ¡vestos uÅ¾duotys, kurioms laiko prireikÄ— daugiau paskaiÄiuoto vidurkio.
 
-Sunkiausios pagal klaidingus bandymus, tarkime, kai bandymø buvo daugiau 3:
-```{r
-> sunk.pagal.bandym <- subset(x.gd, x.gd$attempt > 3)
-> table(sunk.pagal.bandym$lesson_name)
+Sunkiausios pagal klaidingus bandymus, tarkime, kai bandymÅ³ buvo daugiau 3:
+```{r}
+sunk.pagal.bandym <- subset(x.gd, x.gd$attempt > 3)
+table(sunk.pagal.bandym$lesson_name)
 ```
-Per komandà "table" iğvedame tas pamokos, á kurias atsakyti prireikë daugiau trijø bandymø.
+Per komandÄ… "table" iÅ¡vedame tas pamokos, Ä¯ kurias atsakyti prireikÄ— daugiau trijÅ³ bandymÅ³.
 
-Sunkiausios pagal praleidimø skaièiø:
-```{r
-> x.gd.skip.true<-subset(x.gd, skipped == TRUE)
-> table(x.gd.skip.true$lesson_name)
-> which(table(x.gd.skip.true$lesson_name)>25)
+Sunkiausios pagal praleidimÅ³ skaiÄiÅ³:
+```{r}
+x.gd.skip.true<-subset(x.gd, skipped == TRUE)
+table(x.gd.skip.true$lesson_name)
+which(table(x.gd.skip.true$lesson_name)>25)
 ```
-Èia matome kiekvienos pamokos eiluèiø skaièiø, kai stulpelyje "skipped" árağyta TRUE. Ir iğvedame pamokas, kurios eiluèiø skaièius yra didesnis uş 25.
+ÄŒia matome kiekvienos pamokos eiluÄiÅ³ skaiÄiÅ³, kai stulpelyje "skipped" Ä¯raÅ¡yta TRUE. Ir iÅ¡vedame pamokas, kurios eiluÄiÅ³ skaiÄius yra didesnis uÅ¾ 25.
 
-#Papildomas ádomus klausimas.
-Mano sugalvotas. Kiek yra labiausiai uşsispyrusiø şmoniø, t.y. kiek tø, kurie po daug nesëkmingø bandymø vis dëlto toliau siekë atsakyti patys, nesikreipdami á "skip" komandà?
-```{r
-> split.x.gd <- split(x.gd, x.gd$skipped)
-> x.gd.skip.false <- split.x.gd$`FALSE`
-> papild.salyga <- subset(x.gd.skip.false, x.gd.skip.false$attempt > 3)
+#Papildomas Ä¯domus klausimas.
+Mano sugalvotas. Kiek yra labiausiai uÅ¾sispyrusiÅ³ Å¾moniÅ³, t.y. kiek tÅ³, kurie po daug nesÄ—kmingÅ³ bandymÅ³ vis dÄ—lto toliau siekÄ— atsakyti patys, nesikreipdami Ä¯ "skip" komandÄ…?
+```{r}
+split.x.gd <- split(x.gd, x.gd$skipped)
+x.gd.skip.false <- split.x.gd$`FALSE`
+papild.salyga <- subset(x.gd.skip.false, x.gd.skip.false$attempt > 3)
 unique(papild.salyga$user)
 ```
-Matome, kad tokiø buvo 22 şmonës. Ádomumo dëlei, koks buvo maksimalus bandymø skaièius iki teisingo atsakymo?
-```{r
-> max(papild.salyga$attempt)
+Matome, kad tokiÅ³ buvo 22 Å¾monÄ—s. Ä®domumo dÄ—lei, koks buvo maksimalus bandymÅ³ skaiÄius iki teisingo atsakymo?
+```{r}
+max(papild.salyga$attempt)
 ```
 Net 28 bandymai!

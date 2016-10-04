@@ -124,136 +124,430 @@ $(document).ready(function () {
 <div id="swirl-rezultatai" class="section level1">
 <h1>Swirl rezultatai</h1>
 <p>Užduotis: padaryti duomenų analizę, kurie yra faile task6. Nuskaitome duomenys:</p>
-<pre class="{r"><code>&gt; x = read.csv('C:/Users/Administrator/Desktop/destytojo_Econometrics1/Econometrics1/task6/R_programing_swirlResults.csv', stringsAsFactors = FALSE)
-&gt; unique(x$user)</code></pre>
+<pre class="r"><code>x = read.csv('C:/Users/Administrator/Desktop/destytojo_Econometrics1/Econometrics1/task6/R_programing_swirlResults.csv', stringsAsFactors = FALSE)
+unique(x$user)</code></pre>
+<pre><code>##  [1] &quot;aaa&quot;               &quot;testas&quot;            &quot;1vbutkus&quot;         
+##  [4] &quot;emru3000&quot;          &quot;gyse&quot;              &quot;simona1234&quot;       
+##  [7] &quot;rokasalek&quot;         &quot;Dominykas&quot;         &quot;SandraKozlovskaja&quot;
+## [10] &quot;ogadova&quot;           &quot;aipe00&quot;            &quot;MildaPie&quot;         
+## [13] &quot;sindeivydas&quot;       &quot;gyse3054&quot;          &quot;ojautakaite&quot;      
+## [16] &quot;rokasaleks&quot;        &quot;kestous&quot;           &quot;zagnyte&quot;          
+## [19] &quot;Karolina&quot;          &quot;edba2903&quot;          &quot;Domante Bulovaite&quot;
+## [22] &quot;Raigardas&quot;         &quot;Greta&quot;             &quot;gretajes&quot;         
+## [25] &quot;Juste&quot;             &quot;juste&quot;             &quot;Dariukxas&quot;        
+## [28] &quot;ju&quot;                &quot;simonalevickaite&quot;  &quot;j&quot;                
+## [31] &quot;Danielius&quot;</code></pre>
 <p>Matome visus vartotojus, ėjusius kursą. Reikia išvalyti duomenys nuo “šiukšlių”. Pavyzdžiui, mums nereikalingi duomenys, gauti, kai programa buvo testuojama (user: aaa, testas, 1vbutkus). Tada į naują kintamąjį “x.gd” įrašome tik reikalingus analizei duomenys, t.y. visus be aaa, testas ir 1vbutkus:</p>
-<pre class="{r"><code>&gt; x.gd &lt;- subset(x, user != &quot;aaa&quot; &amp; user != &quot;testas&quot; &amp; user != &quot;1vbutkus&quot;)
-&gt; unique(x.gd$user)</code></pre>
+<pre class="r"><code>x.gd &lt;- subset(x, user != &quot;aaa&quot; &amp; user != &quot;testas&quot; &amp; user != &quot;1vbutkus&quot;)
+unique(x.gd$user)</code></pre>
+<pre><code>##  [1] &quot;emru3000&quot;          &quot;gyse&quot;              &quot;simona1234&quot;       
+##  [4] &quot;rokasalek&quot;         &quot;Dominykas&quot;         &quot;SandraKozlovskaja&quot;
+##  [7] &quot;ogadova&quot;           &quot;aipe00&quot;            &quot;MildaPie&quot;         
+## [10] &quot;sindeivydas&quot;       &quot;gyse3054&quot;          &quot;ojautakaite&quot;      
+## [13] &quot;rokasaleks&quot;        &quot;kestous&quot;           &quot;zagnyte&quot;          
+## [16] &quot;Karolina&quot;          &quot;edba2903&quot;          &quot;Domante Bulovaite&quot;
+## [19] &quot;Raigardas&quot;         &quot;Greta&quot;             &quot;gretajes&quot;         
+## [22] &quot;Juste&quot;             &quot;juste&quot;             &quot;Dariukxas&quot;        
+## [25] &quot;ju&quot;                &quot;simonalevickaite&quot;  &quot;j&quot;                
+## [28] &quot;Danielius&quot;</code></pre>
 <p>Toliau žiūrime ar nėra tų pačių vartotojų pasirašiusiais skirtingais user_name’ais. Matome kelis skirtingus user’ius, bet žinome, kad tai yra tas pats žmogus. Išskiriame juos:</p>
-<pre class="{r"><code>&gt; gyse &lt;- subset(x.gd, user == &quot;gyse3054&quot; | user == &quot;gyse&quot;)
-&gt; rokasaleks &lt;- subset(x.gd, user == &quot;rokasaleks&quot; | user == &quot;rokasalek&quot;)
-&gt; juste &lt;- subset(x.gd, user == &quot;j&quot; | user == &quot;ju&quot; | user == &quot;juste&quot; | user == &quot;Juste&quot;)</code></pre>
+<pre class="r"><code>gyse &lt;- subset(x.gd, user == &quot;gyse3054&quot; | user == &quot;gyse&quot;)
+rokasaleks &lt;- subset(x.gd, user == &quot;rokasaleks&quot; | user == &quot;rokasalek&quot;)
+juste &lt;- subset(x.gd, user == &quot;j&quot; | user == &quot;ju&quot; | user == &quot;juste&quot; | user == &quot;Juste&quot;)</code></pre>
 <p>Išnagrinėkime juos atskirai:</p>
-<pre class="{r"><code>&gt; unique(gyse$lesson_name)
-&gt; g &lt;- split(gyse, gyse$skipped)
-&gt; head(g$`TRUE`)
-&gt; nrow(g$`TRUE`)</code></pre>
+<pre class="r"><code>unique(gyse$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>g &lt;- split(gyse, gyse$skipped)
+head(g$`TRUE`)</code></pre>
+<pre><code>##         X     name takeTime sysUser sysName             sysTime     user
+## 2412 2412 gyse3054       10 gytisse Windows 2016-09-13 20:18:06 gyse3054
+## 2465 2465 gyse3054       12 gytisse Windows 2016-09-13 20:47:39 gyse3054
+## 2603 2603 gyse3054       20 gytisse Windows 2016-09-13 21:17:07 gyse3054
+## 2607 2607 gyse3054       20 gytisse Windows 2016-09-13 21:17:07 gyse3054
+## 2610 2610 gyse3054       20 gytisse Windows 2016-09-13 21:17:07 gyse3054
+## 2617 2617 gyse3054       20 gytisse Windows 2016-09-13 21:17:07 gyse3054
+##        course_name              lesson_name question_number correct
+## 2412 R Programming Matrices and Data Frames              21    TRUE
+## 2465 R Programming                    Logic              21    TRUE
+## 2603 R Programming                Functions               8    TRUE
+## 2607 R Programming                Functions              13    TRUE
+## 2610 R Programming                Functions              16    TRUE
+## 2617 R Programming                Functions              27    TRUE
+##      attempt            datetime skipped
+## 2412       4 2016-09-13 20:12:45    TRUE
+## 2465       3 2016-09-13 20:25:49    TRUE
+## 2603       3 2016-09-13 20:55:32    TRUE
+## 2607       2 2016-09-13 20:58:32    TRUE
+## 2610       1 2016-09-13 21:03:13    TRUE
+## 2617       1 2016-09-13 21:08:45    TRUE</code></pre>
+<pre class="r"><code>nrow(g$`TRUE`)</code></pre>
+<pre><code>## [1] 96</code></pre>
 <p>User “gyse” padarė visas 16 užduočių ir išviso praleido (skipped) 96 klausimus, iš kurių čia matome 6 (pvz: Logic 21, Functions 8), panaudoję komandą “head(g<code>TRUE</code>)”. Norint pamatyti visus praleistus reikėtų naudoti komandą “g<code>TRUE</code>”.</p>
-<pre class="{r"><code>&gt; unique(rokasaleks$lesson_name)
-&gt; r &lt;- split(rokasaleks, rokasaleks$skipped)
-&gt; head(r$`TRUE`)
-&gt; nrow(r$`TRUE`)</code></pre>
+<pre class="r"><code>unique(rokasaleks$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>r &lt;- split(rokasaleks, rokasaleks$skipped)
+head(r$`TRUE`)</code></pre>
+<pre><code>##         X       name takeTime   sysUser sysName             sysTime
+## 3345 3345 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+## 3346 3346 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+## 3350 3350 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+## 3353 3353 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+## 3356 3356 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+## 3361 3361 rokasaleks       30 yroka_000 Windows 2016-09-14 21:32:38
+##            user   course_name         lesson_name question_number correct
+## 3345 rokasaleks R Programming Workspace and Files              14    TRUE
+## 3346 rokasaleks R Programming Workspace and Files              15    TRUE
+## 3350 rokasaleks R Programming Workspace and Files              22   FALSE
+## 3353 rokasaleks R Programming Workspace and Files              25    TRUE
+## 3356 rokasaleks R Programming Workspace and Files              31    TRUE
+## 3361 rokasaleks R Programming Workspace and Files              34   FALSE
+##      attempt            datetime skipped
+## 3345       2 2016-09-14 21:15:23    TRUE
+## 3346       1 2016-09-14 21:16:37    TRUE
+## 3350       1 2016-09-14 21:22:43    TRUE
+## 3353       1 2016-09-14 21:24:24    TRUE
+## 3356       1 2016-09-14 21:27:47    TRUE
+## 3361       3 2016-09-14 21:29:49    TRUE</code></pre>
+<pre class="r"><code>nrow(r$`TRUE`)</code></pre>
+<pre><code>## [1] 114</code></pre>
 <p>User “rokasaleks” padarė visas 16 užduočių ir išviso praleido (skipped) 114 klausimų, iš kurių čia matome 6 (pvz: Workspace and Files 1, Workspace and Files 22). Norint pamatyti visus praleistus reikėtų naudoti komandą “r<code>TRUE</code>”.</p>
-<pre class="{r"><code>&gt; unique(juste$lesson_name)
-&gt; j &lt;- split(juste, juste$skipped)
-&gt; j$`TRUE`</code></pre>
+<pre class="r"><code>unique(juste$lesson_name)</code></pre>
+<pre><code>## [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+## [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+## [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+## [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+## [9] &quot;Logic&quot;</code></pre>
+<pre class="r"><code>j &lt;- split(juste, juste$skipped)
+j$`TRUE`</code></pre>
+<pre><code>##         X  name takeTime sysUser sysName             sysTime  user
+## 6415 6415 juste       25  JustÄ— Windows 2016-09-15 20:40:38 juste
+## 6679 6679 juste       30  JustÄ— Windows 2016-09-15 22:00:43    ju
+##        course_name              lesson_name question_number correct
+## 6415 R Programming       Subsetting Vectors              21    TRUE
+## 6679 R Programming Matrices and Data Frames              33   FALSE
+##      attempt            datetime skipped
+## 6415       7 2016-09-15 20:34:55    TRUE
+## 6679       5 2016-09-15 21:57:32    TRUE</code></pre>
 <p>User “juste” padarė tik pirmas 9 užduotis ir praleido (skipped) 2 klausimus: Subsetting Vectors 21 ir Matrices and Data Frames 33.</p>
 <p>Dabar išnagrinėkime likusius vartotojus:</p>
-<pre class="{r"><code>&gt; y&lt;-subset(x.gd, user != &quot;gyse&quot; &amp; user != &quot;gyse3054&quot; &amp; user != &quot;rokasalek&quot; &amp; user != &quot;rokasaleks&quot; &amp; user != &quot;j&quot; &amp; user != &quot;ju&quot; &amp; user !=&quot;Juste&quot; &amp; user != &quot;juste&quot;)
-&gt; m &lt;- split(y, y$skipped)
-&gt; y.skip.true &lt;- m$`TRUE`
-&gt; unique(y.skip.true$user)</code></pre>
+<pre class="r"><code>y&lt;-subset(x.gd, user != &quot;gyse&quot; &amp; user != &quot;gyse3054&quot; &amp; user != &quot;rokasalek&quot; &amp; user != &quot;rokasaleks&quot; &amp; user != &quot;j&quot; &amp; user != &quot;ju&quot; &amp; user !=&quot;Juste&quot; &amp; user != &quot;juste&quot;)
+m &lt;- split(y, y$skipped)
+y.skip.true &lt;- m$`TRUE`
+unique(y.skip.true$user)</code></pre>
+<pre><code>##  [1] &quot;SandraKozlovskaja&quot; &quot;ojautakaite&quot;       &quot;sindeivydas&quot;      
+##  [4] &quot;Domante Bulovaite&quot; &quot;Greta&quot;             &quot;Karolina&quot;         
+##  [7] &quot;kestous&quot;           &quot;ogadova&quot;           &quot;Raigardas&quot;        
+## [10] &quot;Dariukxas&quot;         &quot;gretajes&quot;          &quot;simonalevickaite&quot;</code></pre>
 <p>Identifikavome vartotojus, kurie praleidinėjo klausimus. Patikrinkime, ar jie ėjo visas užduotis:</p>
-<pre class="{r"><code>&gt; Sandra &lt;- subset(x.gd, user == &quot;SandraKozlovskaja&quot;)
-&gt; unique(Sandra$lesson_name)
-&gt; s&lt;- split(Sandra, Sandra$skipped)
-&gt; nrow(s$`TRUE`)
-&gt; ojautakaite &lt;- subset(x.gd, user == &quot;ojautakaite&quot;)
-&gt; o &lt;- split(ojautakaite, ojautakaite$skipped)
-&gt; nrow(s$`TRUE`)
-&gt; sindeivydas &lt;- subset(x.gd, user == &quot;sindeivydas&quot;)
-&gt; unique(sindeivydas$lesson_name)
-&gt; sin &lt;- split(sindeivydas, sindeivydas$skipped)
-&gt; nrow(sin$`TRUE`)
-&gt; Domante &lt;- subset(x.gd, user == &quot;Domante Bulovaite&quot;)
-&gt; unique(Domante$lesson_name)
-&gt; domante &lt;- split(Domante, Domante$skipped)
-&gt; nrow(domante$`TRUE`)
-&gt; Greta &lt;- subset(x.gd, user == &quot;Greta&quot;)
-&gt; unique(Greta$lesson_name)
-&gt; greta &lt;- split(Greta, Greta$skipped)
-&gt; nrow(greta$`TRUE`)
-&gt; Karolina &lt;- subset(x.gd, user == &quot;Karolina&quot;)
-&gt; unique(Karolina$lesson_name)
-&gt; karolina &lt;- split(Karolina, Karolina$skipped)
-&gt; nrow(karolina$`TRUE`)
-&gt; kestous &lt;- subset(x.gd, user == &quot;kestous&quot;)
-&gt; unique(kestous$lesson_name)
-&gt; kest &lt;- split(kestous, kestous$skipped)
-&gt; nrow(kest$`TRUE`)
-&gt; ogadova &lt;- subset(x.gd, user == &quot;ogadova&quot;)
-&gt; unique(ogadova$lesson_name)
-&gt; oga &lt;- split(ogadova, ogadova$skipped)
-&gt; nrow(oga$`TRUE`)
-&gt; Raigardas &lt;- subset(x.gd, user == &quot;Raigardas&quot;)
-&gt; unique(Raigardas$lesson_name)
-&gt; raigardas &lt;- split(Raigardas, Raigardas$skipped)
-&gt; nrow(raigardas$`TRUE`)
-&gt; Dariukxas &lt;- subset(x.gd, user == &quot;Dariukxas&quot;)
-&gt; unique(Dariukxas$lesson_name)
-&gt; Darius &lt;- split(Dariukxas, Dariukxas$skipped)
-&gt; nrow(Darius$`TRUE`)
-&gt; gretajes &lt;- subset(x.gd, user == &quot;gretajes&quot;)
-&gt; unique(gretajes$lesson_name)
-&gt; gretaj &lt;- split(gretajes, gretajes$skipped)
-&gt; nrow(gretaj$`TRUE`)
-&gt; simonalevickaite &lt;- subset(x.gd, user == &quot;simonalevickaite&quot;)
-&gt; unique(simonalevickaite$lesson_name)
-&gt; simonal &lt;- split(simonalevickaite, simonalevickaite$skipped)
-&gt; nrow(simonal$`TRUE`)</code></pre>
+<pre class="r"><code>Sandra &lt;- subset(x.gd, user == &quot;SandraKozlovskaja&quot;)
+unique(Sandra$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>s&lt;- split(Sandra, Sandra$skipped)
+nrow(s$`TRUE`)</code></pre>
+<pre><code>## [1] 16</code></pre>
+<pre class="r"><code>ojautakaite &lt;- subset(x.gd, user == &quot;ojautakaite&quot;)
+o &lt;- split(ojautakaite, ojautakaite$skipped)
+nrow(s$`TRUE`)</code></pre>
+<pre><code>## [1] 16</code></pre>
+<pre class="r"><code>sindeivydas &lt;- subset(x.gd, user == &quot;sindeivydas&quot;)
+unique(sindeivydas$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>sin &lt;- split(sindeivydas, sindeivydas$skipped)
+nrow(sin$`TRUE`)</code></pre>
+<pre><code>## [1] 18</code></pre>
+<pre class="r"><code>Domante &lt;- subset(x.gd, user == &quot;Domante Bulovaite&quot;)
+unique(Domante$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>domante &lt;- split(Domante, Domante$skipped)
+nrow(domante$`TRUE`)</code></pre>
+<pre><code>## [1] 11</code></pre>
+<pre class="r"><code>Greta &lt;- subset(x.gd, user == &quot;Greta&quot;)
+unique(Greta$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>greta &lt;- split(Greta, Greta$skipped)
+nrow(greta$`TRUE`)</code></pre>
+<pre><code>## [1] 24</code></pre>
+<pre class="r"><code>Karolina &lt;- subset(x.gd, user == &quot;Karolina&quot;)
+unique(Karolina$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Base Graphics&quot;            &quot;Functions&quot;               
+##  [5] &quot;Logic&quot;                    &quot;Matrices and Data Frames&quot;
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Missing Values&quot;          
+##  [9] &quot;Vectors&quot;                  &quot;Sequences of Numbers&quot;    
+## [11] &quot;Workspace and Files&quot;      &quot;Dates and Times&quot;         
+## [13] &quot;Simulation&quot;               &quot;lapply and sapply&quot;       
+## [15] &quot;vapply and tapply&quot;        &quot;Looking at Data&quot;</code></pre>
+<pre class="r"><code>karolina &lt;- split(Karolina, Karolina$skipped)
+nrow(karolina$`TRUE`)</code></pre>
+<pre><code>## [1] 76</code></pre>
+<pre class="r"><code>kestous &lt;- subset(x.gd, user == &quot;kestous&quot;)
+unique(kestous$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>kest &lt;- split(kestous, kestous$skipped)
+nrow(kest$`TRUE`)</code></pre>
+<pre><code>## [1] 300</code></pre>
+<pre class="r"><code>ogadova &lt;- subset(x.gd, user == &quot;ogadova&quot;)
+unique(ogadova$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Sequences of Numbers&quot;     &quot;Vectors&quot;                 
+##  [5] &quot;Missing Values&quot;           &quot;Subsetting Vectors&quot;      
+##  [7] &quot;Matrices and Data Frames&quot; &quot;Logic&quot;                   
+##  [9] &quot;Functions&quot;                &quot;lapply and sapply&quot;       
+## [11] &quot;Workspace and Files&quot;      &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>oga &lt;- split(ogadova, ogadova$skipped)
+nrow(oga$`TRUE`)</code></pre>
+<pre><code>## [1] 153</code></pre>
+<pre class="r"><code>Raigardas &lt;- subset(x.gd, user == &quot;Raigardas&quot;)
+unique(Raigardas$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>raigardas &lt;- split(Raigardas, Raigardas$skipped)
+nrow(raigardas$`TRUE`)</code></pre>
+<pre><code>## [1] 9</code></pre>
+<pre class="r"><code>Dariukxas &lt;- subset(x.gd, user == &quot;Dariukxas&quot;)
+unique(Dariukxas$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>Darius &lt;- split(Dariukxas, Dariukxas$skipped)
+nrow(Darius$`TRUE`)</code></pre>
+<pre><code>## [1] 30</code></pre>
+<pre class="r"><code>gretajes &lt;- subset(x.gd, user == &quot;gretajes&quot;)
+unique(gretajes$lesson_name)</code></pre>
+<pre><code>## [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+## [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+## [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+## [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+## [9] &quot;Logic&quot;</code></pre>
+<pre class="r"><code>gretaj &lt;- split(gretajes, gretajes$skipped)
+nrow(gretaj$`TRUE`)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>simonalevickaite &lt;- subset(x.gd, user == &quot;simonalevickaite&quot;)
+unique(simonalevickaite$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;lapply and sapply&quot;       
+## [11] &quot;vapply and tapply&quot;        &quot;Looking at Data&quot;         
+## [13] &quot;Simulation&quot;               &quot;Dates and Times&quot;         
+## [15] &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>simonal &lt;- split(simonalevickaite, simonalevickaite$skipped)
+nrow(simonal$`TRUE`)</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>User “SandraKozlovskaja” atliko visas 16 užduočių, bet praleido 16 klausimų, norint pamatyti juos visus reikėtų naudoti komandą s<code>TRUE</code>. User “ojautakaite” atliko 15 užduočių ir praleido 8 klausimus, norint pamatyti juos visus reikėtų naudoti komandą o<code>TRUE</code>. User “sindeivydas” atliko visas 16 užduočių, bet praleido 18 klausimų, norint pamatyti juos visus reikėtų naudoti komandą sin<code>TRUE</code>. User “Domante Bulovaite” atliko visas 16 užduočių, bet praleido 11 klausimų, norint pamatyti juos visus reikėtų naudoti komandą domante<code>TRUE</code>. User “Greta” atliko visas 16 užduočių, bet praleido 24 klausimus, norint pamatyti juos visus reikėtų naudoti komandą greta<code>TRUE</code>. User “Karolina” atliko visas 16 užduočių, bet praleido 76 klausimų, norint pamatyti juos visus reikėtų naudoti komandą karolina<code>TRUE</code>. User “kestous” atliko visas 16 užduočių, bet praleido 300 klausimų, norint pamatyti juos visus reikėtų naudoti komandą kest<code>TRUE</code>. User “ogadova” atliko visas 16 užduočių, bet praleido 153 klausimus, norint pamatyti juos visus reikėtų naudoti komandą oga<code>TRUE</code>. User “Raigardas” atliko visas 16 užduočių, bet praleido 9 klausimus, norint pamatyti juos visus reikėtų naudoti komandą raigardas<code>TRUE</code>. User “Dariukxas” atliko visas 16 užduočių, bet praleido 30 klausimų, norint pamatyti juos visus reikėtų naudoti komandą Darius<code>TRUE</code>. User “gretajes” atliko 9 užduotis ir praleido 2 klausimus, norint pamatyti juos reikėtų naudoti komandą gretaj<code>TRUE</code>. User “simonalevickaite” atliko 15 užduočių ir praleido 5 klausimus, norint pamatyti juos reikėtų naudoti komandą simonal<code>TRUE</code>.</p>
 <p>Dabar patikriname tuos, kurie nepraleido nei vieno klausimo:</p>
-<pre class="{r"><code>&gt; y.skip.false.only&lt;-subset(y, user != &quot;SandraKozlovskaja&quot; &amp; user != &quot;ojautakaite&quot; &amp; user != &quot;sindeivydas&quot; &amp; user != &quot;Domante Bulovaite&quot; &amp; user != &quot;Greta&quot; &amp; user != &quot;Karolina&quot; &amp; user != &quot;kestous&quot; &amp; user != &quot;ogadova&quot; &amp; user != &quot;Raigardas&quot; &amp; user != &quot;Dariukxas&quot; &amp; user != &quot;gretajes&quot; &amp; user != &quot;simonalevickaite&quot;)
-&gt; unique(y.skip.false.only$user)</code></pre>
+<pre class="r"><code>y.skip.false.only&lt;-subset(y, user != &quot;SandraKozlovskaja&quot; &amp; user != &quot;ojautakaite&quot; &amp; user != &quot;sindeivydas&quot; &amp; user != &quot;Domante Bulovaite&quot; &amp; user != &quot;Greta&quot; &amp; user != &quot;Karolina&quot; &amp; user != &quot;kestous&quot; &amp; user != &quot;ogadova&quot; &amp; user != &quot;Raigardas&quot; &amp; user != &quot;Dariukxas&quot; &amp; user != &quot;gretajes&quot; &amp; user != &quot;simonalevickaite&quot;)
+unique(y.skip.false.only$user)</code></pre>
+<pre><code>## [1] &quot;emru3000&quot;   &quot;simona1234&quot; &quot;Dominykas&quot;  &quot;aipe00&quot;     &quot;MildaPie&quot;  
+## [6] &quot;zagnyte&quot;    &quot;edba2903&quot;   &quot;Danielius&quot;</code></pre>
 <p>Tada belieka patikrinti ar jie atliko visas pamokas:</p>
-<pre class="{r"><code>&gt; emru&lt;-subset(y.skip.false.only, user == &quot;emru3000&quot;)
-&gt; unique(emru$lesson_name)
-&gt; aipe&lt;-subset(y.skip.false.only, user == &quot;aipe00&quot;)
-&gt; unique(aipe$lesson_name)
-&gt; simona1234&lt;-subset(y.skip.false.only, user == &quot;simona1234&quot;)
-&gt; unique(simona1234$lesson_name)
-&gt; zagnyte&lt;-subset(y.skip.false.only, user == &quot;zagnyte&quot;)
-&gt; unique(zagnyte$lesson_name)
-</code></pre>
+<pre class="r"><code>emru&lt;-subset(y.skip.false.only, user == &quot;emru3000&quot;)
+unique(emru$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>aipe&lt;-subset(y.skip.false.only, user == &quot;aipe00&quot;)
+unique(aipe$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>simona1234&lt;-subset(y.skip.false.only, user == &quot;simona1234&quot;)
+unique(simona1234$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>zagnyte&lt;-subset(y.skip.false.only, user == &quot;zagnyte&quot;)
+unique(zagnyte$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Dummy Lesson&quot;             &quot;Basic Building Blocks&quot;   
+##  [3] &quot;Workspace and Files&quot;      &quot;Sequences of Numbers&quot;    
+##  [5] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [7] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [9] &quot;Logic&quot;                    &quot;Functions&quot;               
+## [11] &quot;lapply and sapply&quot;        &quot;vapply and tapply&quot;       
+## [13] &quot;Looking at Data&quot;          &quot;Simulation&quot;              
+## [15] &quot;Dates and Times&quot;          &quot;Base Graphics&quot;</code></pre>
 <p>User’iai “emru3000”,“simona1234”,“aipe00” ir “zagnyte” pilnai atliko 16 užduočių, nepraleidus nei vieno klausimo.</p>
-<pre class="{r"><code>&gt; Dominykas&lt;-subset(y.skip.false.only, user == &quot;Dominykas&quot;)
-&gt; unique(Dominykas$lesson_name)
-&gt; MildaPie&lt;-subset(y.skip.false.only, user == &quot;MildaPie&quot;)
-&gt; unique(MildaPie$lesson_name)
-&gt; edba&lt;-subset(y.skip.false.only, user == &quot;edba2903&quot;)
-&gt; unique(edba$lesson_name)
-&gt; Danielius&lt;-subset(y.skip.false.only, user == &quot;Danielius&quot;)
-&gt; unique(Danielius$lesson_name)</code></pre>
+<pre class="r"><code>Dominykas&lt;-subset(y.skip.false.only, user == &quot;Dominykas&quot;)
+unique(Dominykas$lesson_name)</code></pre>
+<pre><code>## [1] &quot;Dummy Lesson&quot;</code></pre>
+<pre class="r"><code>MildaPie&lt;-subset(y.skip.false.only, user == &quot;MildaPie&quot;)
+unique(MildaPie$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Basic Building Blocks&quot;    &quot;Workspace and Files&quot;     
+##  [3] &quot;Sequences of Numbers&quot;     &quot;Vectors&quot;                 
+##  [5] &quot;Missing Values&quot;           &quot;Subsetting Vectors&quot;      
+##  [7] &quot;Matrices and Data Frames&quot; &quot;Logic&quot;                   
+##  [9] &quot;Functions&quot;                &quot;lapply and sapply&quot;       
+## [11] &quot;vapply and tapply&quot;        &quot;Looking at Data&quot;         
+## [13] &quot;Simulation&quot;               &quot;Dates and Times&quot;         
+## [15] &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>edba&lt;-subset(y.skip.false.only, user == &quot;edba2903&quot;)
+unique(edba$lesson_name)</code></pre>
+<pre><code>##  [1] &quot;Vectors&quot;                  &quot;Missing Values&quot;          
+##  [3] &quot;Subsetting Vectors&quot;       &quot;Matrices and Data Frames&quot;
+##  [5] &quot;Logic&quot;                    &quot;lapply and sapply&quot;       
+##  [7] &quot;vapply and tapply&quot;        &quot;Looking at Data&quot;         
+##  [9] &quot;Dates and Times&quot;          &quot;Simulation&quot;              
+## [11] &quot;Base Graphics&quot;</code></pre>
+<pre class="r"><code>Danielius&lt;-subset(y.skip.false.only, user == &quot;Danielius&quot;)
+unique(Danielius$lesson_name)</code></pre>
+<pre><code>## [1] &quot;Dummy Lesson&quot;</code></pre>
 <p>User “Dominykas” nepraleido nei vieno klausimo, bet atliko tik vieną užduotį. User “MildaPie” nepraleido nei vieno klausimo, bet atliko išviso 15 užduočių. User “edba2903” nepraleido nei vieno klausimo, bet atliko 11 užduočių. User “Danielius” nepraleido nei vieno klausimo, bet atliko tik vieną užduotį.</p>
 <p>Kiti įdomūs klausimai. Kiek vidutiniškai laiko užtrunka atlikti užduotis?</p>
-<pre class="{r"><code>&gt; mean(x.gd$takeTime)</code></pre>
+<pre class="r"><code>mean(x.gd$takeTime)</code></pre>
+<pre><code>## [1] 17.58355</code></pre>
 <p>Tiek vidutiniškai laiko skyrė vartotojai, pagal jų pačių pateiktą laiką.</p>
 <p>Ar galima pasitikėti žmonių deklaruojamu laiku?</p>
-<pre class="{r"><code>&gt; x.gd&lt;-x.gd[order(x.gd$user),]</code></pre>
+<pre class="r"><code>x.gd&lt;-x.gd[order(x.gd$user),]</code></pre>
 <p>Išrikiavome duomenys iš eilės, kad visos vartotojo eilutės būtų vienoje vietoje, tada lengva stebėti pagal stulpelius “takeTime” ir “datetime”, kad vartotojų pateikti laikai skiriasi nuo sistemos fiksuotų laikų. Todėl neverta pasitikėti žmonių deklaruojamu laiku.</p>
 <p>Kokios užduotis buvo sunkiausios? Pagal laiką:</p>
-<pre class="{r"><code>&gt; sunk.pagal.laika &lt;- subset(x.gd, x.gd$takeTime &gt; mean(x.gd$takeTime))
-&gt; table(sunk.pagal.laika$lesson_name)</code></pre>
+<pre class="r"><code>sunk.pagal.laika &lt;- subset(x.gd, x.gd$takeTime &gt; mean(x.gd$takeTime))
+table(sunk.pagal.laika$lesson_name)</code></pre>
+<pre><code>## 
+##            Base Graphics    Basic Building Blocks          Dates and Times 
+##                      163                      125                      175 
+##             Dummy Lesson                Functions        lapply and sapply 
+##                        4                      574                      488 
+##                    Logic          Looking at Data Matrices and Data Frames 
+##                      551                       59                      302 
+##     Sequences of Numbers               Simulation       Subsetting Vectors 
+##                       69                      186                      292 
+##        vapply and tapply                  Vectors      Workspace and Files 
+##                      103                      119                      337</code></pre>
 <p>Išvestos užduotys, kurioms laiko prireikė daugiau paskaičiuoto vidurkio.</p>
 <p>Sunkiausios pagal klaidingus bandymus, tarkime, kai bandymų buvo daugiau 3:</p>
-<pre class="{r"><code>&gt; sunk.pagal.bandym &lt;- subset(x.gd, x.gd$attempt &gt; 3)
-&gt; table(sunk.pagal.bandym$lesson_name)</code></pre>
+<pre class="r"><code>sunk.pagal.bandym &lt;- subset(x.gd, x.gd$attempt &gt; 3)
+table(sunk.pagal.bandym$lesson_name)</code></pre>
+<pre><code>## 
+##            Base Graphics    Basic Building Blocks                Functions 
+##                        4                       11                       27 
+##        lapply and sapply                    Logic Matrices and Data Frames 
+##                        4                       74                       43 
+##     Sequences of Numbers       Subsetting Vectors        vapply and tapply 
+##                       27                       61                       28 
+##                  Vectors      Workspace and Files 
+##                       14                        4</code></pre>
 <p>Per komandą “table” išvedame tas pamokos, į kurias atsakyti prireikė daugiau trijų bandymų.</p>
 <p>Sunkiausios pagal praleidimų skaičių:</p>
-<pre class="{r"><code>&gt; x.gd.skip.true&lt;-subset(x.gd, skipped == TRUE)
-&gt; table(x.gd.skip.true$lesson_name)
-&gt; which(table(x.gd.skip.true$lesson_name)&gt;25)</code></pre>
+<pre class="r"><code>x.gd.skip.true&lt;-subset(x.gd, skipped == TRUE)
+table(x.gd.skip.true$lesson_name)</code></pre>
+<pre><code>## 
+##            Base Graphics    Basic Building Blocks          Dates and Times 
+##                       96                        2                      116 
+##                Functions        lapply and sapply                    Logic 
+##                      126                      100                       28 
+##          Looking at Data Matrices and Data Frames           Missing Values 
+##                       42                       31                       16 
+##     Sequences of Numbers               Simulation       Subsetting Vectors 
+##                       15                      120                       52 
+##        vapply and tapply                  Vectors      Workspace and Files 
+##                       43                       20                       57</code></pre>
+<pre class="r"><code>which(table(x.gd.skip.true$lesson_name)&gt;25)</code></pre>
+<pre><code>##            Base Graphics          Dates and Times                Functions 
+##                        1                        3                        4 
+##        lapply and sapply                    Logic          Looking at Data 
+##                        5                        6                        7 
+## Matrices and Data Frames               Simulation       Subsetting Vectors 
+##                        8                       11                       12 
+##        vapply and tapply      Workspace and Files 
+##                       13                       15</code></pre>
 <p>Čia matome kiekvienos pamokos eilučių skaičių, kai stulpelyje “skipped” įrašyta TRUE. Ir išvedame pamokas, kurios eilučių skaičius yra didesnis už 25.</p>
 </div>
 <div id="papildomas-idomus-klausimas." class="section level1">
 <h1>Papildomas įdomus klausimas.</h1>
 <p>Mano sugalvotas. Kiek yra labiausiai užsispyrusių žmonių, t.y. kiek tų, kurie po daug nesėkmingų bandymų vis dėlto toliau siekė atsakyti patys, nesikreipdami į “skip” komandą?</p>
-<pre class="{r"><code>&gt; split.x.gd &lt;- split(x.gd, x.gd$skipped)
-&gt; x.gd.skip.false &lt;- split.x.gd$`FALSE`
-&gt; papild.salyga &lt;- subset(x.gd.skip.false, x.gd.skip.false$attempt &gt; 3)
+<pre class="r"><code>split.x.gd &lt;- split(x.gd, x.gd$skipped)
+x.gd.skip.false &lt;- split.x.gd$`FALSE`
+papild.salyga &lt;- subset(x.gd.skip.false, x.gd.skip.false$attempt &gt; 3)
 unique(papild.salyga$user)</code></pre>
+<pre><code>##  [1] &quot;Dariukxas&quot;         &quot;Domante Bulovaite&quot; &quot;edba2903&quot;         
+##  [4] &quot;emru3000&quot;          &quot;gyse3054&quot;          &quot;Greta&quot;            
+##  [7] &quot;gretajes&quot;          &quot;j&quot;                 &quot;ju&quot;               
+## [10] &quot;juste&quot;             &quot;Juste&quot;             &quot;Karolina&quot;         
+## [13] &quot;kestous&quot;           &quot;MildaPie&quot;          &quot;ogadova&quot;          
+## [16] &quot;ojautakaite&quot;       &quot;Raigardas&quot;         &quot;rokasaleks&quot;       
+## [19] &quot;SandraKozlovskaja&quot; &quot;simonalevickaite&quot;  &quot;sindeivydas&quot;      
+## [22] &quot;zagnyte&quot;</code></pre>
 <p>Matome, kad tokių buvo 22 žmonės. Įdomumo dėlei, koks buvo maksimalus bandymų skaičius iki teisingo atsakymo?</p>
-<pre class="{r"><code>&gt; max(papild.salyga$attempt)</code></pre>
+<pre class="r"><code>max(papild.salyga$attempt)</code></pre>
+<pre><code>## [1] 28</code></pre>
 <p>Net 28 bandymai!</p>
 </div>
 
