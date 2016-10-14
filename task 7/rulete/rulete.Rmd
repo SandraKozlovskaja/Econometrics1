@@ -11,8 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 # Ruletė
 Užduotis: Nagrinėkime standartinę kazino ruletę. Kokia tikimybė, kad po 1000 vienodų statymų ant vienos pasirinktos spalvos, bus teigiamas balansas? Raskite apytikslę x reikšmę, kuriai galioja nelygybe P(balansas<x)=0.25.
 
-Mano ruletėje 3 spalvos: 18 juodos, 18 raudonos ir 1 žalia.
-Statome ant juodos arba raudonos. Jei iškrenta ant mūsų spalvos, balansas pasididina (+1), jei ne ant mūsų sumažėja (-1). T.y. 19 nepalankių ir 18 palankių.
+Mano ruletėje 3 spalvos: 18 juodų, 18 raudonų ir 1 žalia.
+Statome ant juodos arba raudonos. Jei iškrenta ant mūsų spalvos, balansas pasididina (+1), jei ne ant mūsų - sumažėja (-1). T.y. 19 nepalankių ir 18 palankių.
 
 ```{r}
 n=1000
