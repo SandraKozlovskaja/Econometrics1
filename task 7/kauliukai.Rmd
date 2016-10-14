@@ -1,0 +1,41 @@
+---
+title: "Task 7"
+author: Sandra Kozlovskaja
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Kauliukai
+
+Uþduotis: du þaidëjai þaidþia toká þaidimà. Pirmasis þaidëjas meta tris kauliukus ir fiksuoja iðkritusiø taðkø sumà. Antrasis þaidëjas ridena du kauliukus ir skaièiuoja iðkritusiø taðkø sumà. Laimi tas þaidëjas, kurio taðkø suma yra didesnë. Jeigu taðkø sumos yra lygios, tai, tai ekspermentas kartojamas ið naujo (ir taip kartojama tol, kol galiausiai nustatomas laimëtojas). Kokia tikimybë laimëti pirmajam þaidëjui?
+
+
+Visø pirma, pasirenkame tokiø eksperimentø skaièiø. Pagal sàlygà, per þaidimà gali bûti vienas metimas, jeigu taðkø sumos nebus lygios, taèiau kad paskaièiuotume tikslesnæ tikimybæ laimëti pirmam, tokiø bandymø turime padaryti daaugiau. Tegul jø bus 1000.
+
+```{r}
+p=0
+n=10^3
+
+for (i in 1:n){
+  pirmas<-replicate(n,sum(sample(1:6,3,replace=TRUE)))
+  antras<-replicate(n,sum(sample(1:6,2,replace=TRUE)))
+  as.vector(pirmas)
+  as.vector(antras)
+  if (pirmas[i]>antras[i]){p=p+1}
+  if (pirmas[i]==antras[i]){i=i}
+}
+p
+```
+Kintamasis p parodo, kiek kartø ið 1000 laimëjo pirmas. Tada nesunku paskaièiuoti jo laimëjimo tikimybæ:
+
+```{r}
+probability=p/n
+probability
+```
+
+
+
+*Buvo trumpa Simonos Gritytës konsultacija.
