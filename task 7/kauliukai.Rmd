@@ -10,10 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Kauliukai
 
-Uşduotis: du şaidëjai şaidşia toká şaidimà. Pirmasis şaidëjas meta tris kauliukus ir fiksuoja iğkritusiø tağkø sumà. Antrasis şaidëjas ridena du kauliukus ir skaièiuoja iğkritusiø tağkø sumà. Laimi tas şaidëjas, kurio tağkø suma yra didesnë. Jeigu tağkø sumos yra lygios, tai, tai ekspermentas kartojamas iğ naujo (ir taip kartojama tol, kol galiausiai nustatomas laimëtojas). Kokia tikimybë laimëti pirmajam şaidëjui?
+UÅ¾duotis: du Å¾aidÄ—jai Å¾aidÅ¾ia tokÄ¯ Å¾aidimÄ…. Pirmasis Å¾aidÄ—jas meta tris kauliukus ir fiksuoja iÅ¡kritusiÅ³ taÅ¡kÅ³ sumÄ…. Antrasis Å¾aidÄ—jas ridena du kauliukus ir skaiÄiuoja iÅ¡kritusiÅ³ taÅ¡kÅ³ sumÄ…. Laimi tas Å¾aidÄ—jas, kurio taÅ¡kÅ³ suma yra didesnÄ—. Jeigu taÅ¡kÅ³ sumos yra lygios, tai, tai ekspermentas kartojamas iÅ¡ naujo (ir taip kartojama tol, kol galiausiai nustatomas laimÄ—tojas). Kokia tikimybÄ— laimÄ—ti pirmajam Å¾aidÄ—jui?
 
 
-Visø pirma, pasirenkame tokiø eksperimentø skaièiø. Pagal sàlygà, per şaidimà gali bûti vienas metimas, jeigu tağkø sumos nebus lygios, taèiau kad paskaièiuotume tikslesnæ tikimybæ laimëti pirmam, tokiø bandymø turime padaryti daaugiau. Tegul jø bus 1000.
+VisÅ³ pirma, pasirenkame tokiÅ³ eksperimentÅ³ skaiÄiÅ³. Pagal sÄ…lygÄ…, per Å¾aidimÄ… gali bÅ«ti vienas metimas, jeigu taÅ¡kÅ³ sumos nebus lygios, taÄiau kad paskaiÄiuotume tikslesnÄ™ tikimybÄ™ laimÄ—ti pirmam, tokiÅ³ bandymÅ³ turime padaryti daaugiau. Tegul jÅ³ bus 1000.
 
 ```{r}
 p=0
@@ -29,7 +29,7 @@ for (i in 1:n){
 }
 p
 ```
-Kintamasis p parodo, kiek kartø iğ 1000 laimëjo pirmas. Tada nesunku paskaièiuoti jo laimëjimo tikimybæ:
+Kintamasis p parodo, kiek kartÅ³ iÅ¡ 1000 laimÄ—jo pirmas. Tada nesunku paskaiÄiuoti jo laimÄ—jimo tikimybÄ™:
 
 ```{r}
 probability=p/n
@@ -38,4 +38,4 @@ probability
 
 
 
-*Buvo trumpa Simonos Gritytës konsultacija.
+*Buvo trumpa Simonos GritytÄ—s konsultacija.
