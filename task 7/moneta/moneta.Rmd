@@ -1,0 +1,39 @@
+---
+title: "Task 7"
+author: "Sandra Kozlovskaja"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Moneta
+
+Užduotis: Tarkime, metama moneta. Jeigu iškrenta herbas, tai laimite 12 EUR. Jeigu skaičius, tai pralošiate 10 EUR. Bus žaidžiama 100 kartų ir gauti rezultatai sumuojami. Kokia tikimybė jums turėti teigiamą balansą po 100 kartų? Koks balanso pasikliautinis 95 intervalas? Kaip atrodo balanso tankis?
+
+```{r}
+n=100
+balansas <- replicate(n, sum(sample(c(-10,12), n, replace=TRUE, prob=c(1/2, 1/2)))) #100 kartų sumuojami -10 ir +12 su tikimybe 1/2 abiems, pasikartojimai galimi
+teig <- split(balansas, balansas>0) #padaliname balansą į teigiamus ir neigiamus
+teig <- teig$`TRUE` #imame tik teigiamus
+tikim = length(teig)/n #ir daliname teigiamų balansų skaičių iš visų turimų balansų skaičiaus, taip gauname tikimybę gauti teigiamą balansą
+tikim
+```
+
+Skaičiuojame balanso pasikliautinį 95 intervalą. Iš statistikos žinome formulę, pagal kurią skaičiuojamas intervalas: x±Z*σ/√n
+
+```{r}
+m<-mean(balansas) #pasiskaičiuojame balanso vidurkį (x)
+conf.level<-0.95 #pasikliovimo lygmuo
+z<-qt((1+conf.level)/2, df=n-1) #paskaičiuojame z
+se<-sd(balansas)/sqrt(n) #σ/√n standartinį nuokrypį daliname iš šaknies iš imties didumo
+ci<-z*se #Z*σ/√n
+m-ci #x-Z*σ/√n, apatinė intervalo riba
+m+ci #x+Z*σ/√n, viršutinė intervalo riba
+```
+
+Balanso tankis atrodo taip:
+```{r}
+plot(density(balansas), main = "Balanso tankis")
+```

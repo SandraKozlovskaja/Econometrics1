@@ -1,0 +1,14 @@
+---
+title: "Task 7"
+author: "Sandra Kozlovskaja"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#CRT
+
+Užduotis: Generuojame n atsitiktinių dydžių turinčių Beta skirstinį su parametrais α=β=0.5 Iš šių atsitiktinių dydžių suskaičiuojamas aritmetinis vidurkis. Kaip atrodo aritmetinio vidurkio tankis, kai n=100?
+

@@ -10,22 +10,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Kauliukai
 
-Užduotis: du žaidėjai žaidžia tokį žaidimą. Pirmasis žaidėjas meta tris kauliukus ir fiksuoja iškritusių taškų sumą. Antrasis žaidėjas ridena du kauliukus ir skaičiuoja iškritusių taškų sumą. Laimi tas žaidėjas, kurio taškų suma yra didesnė. Jeigu taškų sumos yra lygios, tai, tai ekspermentas kartojamas iš naujo (ir taip kartojama tol, kol galiausiai nustatomas laimėtojas). Kokia tikimybė laimėti pirmajam žaidėjui?
+Užduotis: du žaidėjai žaidžia tokį žaidimą. Pirmasis žaidėjas meta tris kauliukus ir fiksuoja iškritusių taškų sumą. Antrasis žaidėjas ridena du kauliukus ir skaičiuoja iškritusių taškų sumą. Laimi tas žaidėjas, kurio taškų suma yra didesnė. Jeigu taškų sumos yra lygios, tai tas ekspermentas kartojamas iš naujo (ir taip kartojama tol, kol galiausiai nustatomas laimėtojas). Kokia tikimybė laimėti pirmajam žaidėjui?
 
 
-Visų pirma, pasirenkame tokių eksperimentų skaičių. Pagal sąlygą, per žaidimą gali būti vienas metimas, jeigu taškų sumos nebus lygios, tačiau kad paskaičiuotume tikslesnę tikimybę laimėti pirmam, tokių bandymų turime padaryti daaugiau. Tegul jų bus 1000.
+Visų pirma, pasirenkame tokių eksperimentų skaičių. Pagal sąlygą, per žaidimą gali būti vienas metimas, jeigu taškų sumos nebus lygios, tačiau kad paskaičiuotume tikslesnę tikimybę laimėti pirmam, tokių bandymų turime padaryti daugiau. Tegul jų bus 1000.
 
 ```{r}
-p=0
+p=0 # kiek kartų laimi pirmas
 n=10^3
 
 for (i in 1:n){
-  pirmas<-replicate(n,sum(sample(1:6,3,replace=TRUE)))
-  antras<-replicate(n,sum(sample(1:6,2,replace=TRUE)))
-  as.vector(pirmas)
+  pirmas<-replicate(n,sum(sample(1:6,3,replace=TRUE))) #gauname atsitiktinį skaičių nuo 1 iki 6, 3 kartus, pasikartojimas galimas, juos susumuojame. tokį veiksmą atliekame n kartų.
+  antras<-replicate(n,sum(sample(1:6,2,replace=TRUE))) #tas pats, tik tai skaičių 1:6 gauname 2 kartus.
+  as.vector(pirmas) #sugeneruotas imtis padarome vektoriais.
   as.vector(antras)
-  if (pirmas[i]>antras[i]){p=p+1}
-  if (pirmas[i]==antras[i]){i=i}
+  if (pirmas[i]>antras[i]){p=p+1} #jeigu pirmo žaidėjo suma buvo didesnė, prie esamų pirmo laimėjimų skaičiaus pridedamas dar vienas laimėjimas.
+  if (pirmas[i]==antras[i]){i=i} #jeigu sumos lygios, tas bandymas neužskaitomas ir kartojamas dar kartą.
 }
 p
 ```
