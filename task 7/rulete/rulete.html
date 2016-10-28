@@ -131,12 +131,12 @@ teig &lt;- split(balansas, balansas&gt;0) #padaliname balansą į teigiamus ir n
 teig &lt;- teig$`TRUE` #imame tik teigiamus
 tikim = length(teig)/n #ir daliname teigiamų balansų skaičių iš visų turimų balansų skaičiaus, taip gauname tikimybę gauti teigiamą balansą
 tikim</code></pre>
-<pre><code>## [1] 0.191</code></pre>
-<p>Dabar randame apytikslę x reikšmę, kuriai galioja nelygybė P(balansas&lt;x) = 0.25:</p>
+<pre><code>## [1] 0.177</code></pre>
+<p>Matome tikimybę po 1000 vienodų statymų ant vienos pasirinktos spalvos, turėti teigiamą balansą. Dabar randame apytikslę x reikšmę, kuriai galioja nelygybė P(balansas&lt;x) = 0.25:</p>
 <pre class="r"><code>x=quantile(balansas, probs=0.25)
 x</code></pre>
 <pre><code>## 25% 
-## -46</code></pre>
+## -50</code></pre>
 <p>Dėl quantile(balansas, probs=0.25) komandos buvo pasiremta user’io “zagnyte” ataskaita.</p>
 </div>
 

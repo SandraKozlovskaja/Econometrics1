@@ -137,7 +137,8 @@ unique(Danielius$lesson_name)
 ```
 User "Dominykas" nepraleido nei vieno klausimo, bet atliko tik vieną užduotį. User "MildaPie" nepraleido nei vieno klausimo, bet atliko išviso 15 užduočių. User "edba2903" nepraleido nei vieno klausimo, bet atliko 11 užduočių. User "Danielius" nepraleido nei vieno klausimo, bet atliko tik vieną užduotį.
 
-Kiti įdomūs klausimai. Kiek vidutiniškai laiko užtrunka atlikti užduotis?
+**Kiti įdomūs klausimai**.
+Kiek vidutiniškai laiko užtrunka atlikti užduotis?
 ```{r}
 mean(x.gd$takeTime)
 ```

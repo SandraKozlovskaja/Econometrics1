@@ -22,7 +22,7 @@ teig <- teig$`TRUE` #imame tik teigiamus
 tikim = length(teig)/n #ir daliname teigiamų balansų skaičių iš visų turimų balansų skaičiaus, taip gauname tikimybę gauti teigiamą balansą
 tikim
 ```
-
+Matome tikimybę po 1000 vienodų statymų ant vienos pasirinktos spalvos, turėti teigiamą balansą.
 Dabar randame apytikslę x reikšmę, kuriai galioja nelygybė P(balansas<x) = 0.25:
 
 ```{r}

@@ -36,6 +36,7 @@ imties įverčiai: mūsų sugeneruotos imties vidurkis.
 
 1. Pagal p-reikšmę. Iš statistikos kurso žinome, kad nulinę hipotezę atmetame, kai p-reikšmė griežtai mažesnė už α(reikšmingumo lygmuo, standartinis α=0.05), kitais atvejais - neatmetame.
 2. Pagal 95 pasikliautinąjį intervalą. Jeigu 1 patenka į intervalą, vadinasi imties vidurkis statistiškai reikšmingai nesiskiria nuo 1, ir nulinė hipotezė, kad vidurkis lygus 1, neatmetama. Priešingai - jeigu 1 nepatenka į intervalą, vadinasi imties vidurkis statistiškai reikšmingai skiriasi nuo 1, ir priimame alternatyvą, kad vidurkis nelygus 1.
+3. Pagal statistiką t. Jeigu paskaičiuotos statistikos modulis didesnis už t kritinę reiškmę su n-1 laisvės laipsniu, nulinė hipotezė atmetama.
 
 *Šiuo atveju, 1 patenka į 95 pasikliautinąjį intervalą [0.8717074 ; 1.3839991], todėl imties vidurkis, kuris lygus 1.127853, statistiškai reikšmingai nesiskiria nuo 1, ir nulinė hipotezė neatmetama. Taip pat ir p-reikšmė, kuri lygi 0.3244, nemažesnė už α=0.05, vadinasi nulinė hipotezė natmetama.
 
@@ -57,6 +58,8 @@ for (i in 1:f){ #kartojame ciklą 10^4 kartų
 }
 k*100/f #suskaičiuojame kiek procentų sudaro nepatekusieji (kiek procentų sudaro atmestos nulinės hipotezės)
 ```
+
+Tiek procentų sudaro atmestos nulinės hipotezės.
 
 ####Išvada
 Atmestų nulinių hipotezių, kad imties vidurkis lygus 1, procentas labai mažas, tai reiškia, kad imčių, pasiskirsčiusių pagal normalųjį skirstinį (1,2), vidurkiai statistiškai reikšmingai nesiskiria nuo 1.
