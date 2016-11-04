@@ -151,8 +151,8 @@ s</code></pre>
 <h4>Išvestyje matome:</h4>
 <p>duomenys: imtis - tai mūsų sugeneruota imtis; t - paskaičiuota prašyta statistika; df=n-1=100-1=99 Stjudento skirstinio laisvės laipsnis; p-reikšmė - tikimybė, kad nagrinėdami konkrečią imtį atmesime teisingą nulinę hipotizę; alternatyvioji hipotezė: vidurkis nelygus 1; 95 pasikliautinasis intervalas: apatinė riba, viršutinė riba; imties įverčiai: mūsų sugeneruotos imties vidurkis.</p>
 </div>
-<div id="ar-nuline-hipoteze-atmesta-ar-priimta-spresti-galime-dviem-budais" class="section level4">
-<h4>Ar nulinė hipotezė atmesta ar priimta, spręsti galime dviem būdais:</h4>
+<div id="ar-nuline-hipoteze-atmesta-ar-priimta-spresti-galime-3-budais" class="section level4">
+<h4>Ar nulinė hipotezė atmesta ar priimta, spręsti galime 3 būdais:</h4>
 <ol style="list-style-type: decimal">
 <li>Pagal p-reikšmę. Iš statistikos kurso žinome, kad nulinę hipotezę atmetame, kai p-reikšmė griežtai mažesnė už α(reikšmingumo lygmuo, standartinis α=0.05), kitais atvejais - neatmetame.</li>
 <li>Pagal 95 pasikliautinąjį intervalą. Jeigu 1 patenka į intervalą, vadinasi imties vidurkis statistiškai reikšmingai nesiskiria nuo 1, ir nulinė hipotezė, kad vidurkis lygus 1, neatmetama. Priešingai - jeigu 1 nepatenka į intervalą, vadinasi imties vidurkis statistiškai reikšmingai skiriasi nuo 1, ir priimame alternatyvą, kad vidurkis nelygus 1.</li>
@@ -162,7 +162,7 @@ s</code></pre>
 </div>
 <div id="punktas-b." class="section level4">
 <h4>Punktas b.</h4>
-<p>Kartosime punktą a 10^4 kartų ir atmesime arba priimsime nulinę hipotezę atsižvelgdami į 95 pasikliautinąjį intervalą. Intervalą skaičiuosime pagal formulę x±Z*σ/√n.</p>
+<p>Kartosime punktą a. 10^4 kartų ir atmesime arba priimsime nulinę hipotezę atsižvelgdami į 95 pasikliautinąjį intervalą. Intervalą skaičiuosime pagal formulę x±Z*σ/√n.</p>
 <pre class="r"><code>k=0
 f=10^4
 for (i in 1:f){ #kartojame ciklą 10^4 kartų
@@ -182,7 +182,7 @@ k*100/f #suskaičiuojame kiek procentų sudaro nepatekusieji (kiek procentų sud
 </div>
 <div id="isvada" class="section level4">
 <h4>Išvada</h4>
-<p>Atmestų nulinių hipotezių, kad imties vidurkis lygus 1, procentas labai mažas, tai reiškia, kad imčių, pasiskirsčiusių pagal normalųjį skirstinį (1,2), vidurkiai statistiškai reikšmingai nesiskiria nuo 1.</p>
+<p>Atmestų nulinių hipotezių, kad imties vidurkis lygus 1, yra 4.88%. Šis procentas yra labai mažas ir tai reiškia, kad mūsų generuotų imčių vidurkiai statistiškai reikšmingai nesiskiria nuo 1. Vadinasi, teisinga nulinė hipotezė, kad vidurkis lygus 1 (o ji teisinga, nes mes taip generavome pagal normalųjį skirstinį (1,2), kur vidurkis yra 1, о dispersija 2), 95.12% atvejų buvo priimta. Tačiau, kaip matome, 4.88% nulinių hipotezių buvo atmesta, nors jos yra teisingos. Primenu, kad mūsų reikšmingumo lygmuo α=0.05, t.y. tikimybė atmesti teisingą nulinę hipotezę lygi 5%. Taip panašiai ir gavome.</p>
 </div>
 
 
