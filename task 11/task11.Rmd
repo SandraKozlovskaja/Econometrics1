@@ -61,3 +61,5 @@ points(newx, newy, col="blue", pch=19) # prognozės taškai
 
 legend("bottomright", c("turimi duomenys","tiesinės regresijos tiesė", "naujos prognozės"), lty=c(0,1,0), pch=c(1, -1, 19), col = c("black","red", "blue"))
 ```
+
+Šaltinis: http://www.algorithmist.ru/2011/04/linear-regression-with-examples-in-r.html?m=1
