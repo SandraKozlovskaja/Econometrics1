@@ -1,0 +1,47 @@
+---
+title: "1 užduotis"
+author: "Sandra Kozlovskaja"
+date: '2017 m sausis 20 d '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+a. Suraskite x vidukio ir standartinio nuokrypio įverčius.
+
+
+b. Raskite x išskirtis. Šioje užduotyje, išskirtimis laikome reikšmes, kurios nepakliūna į intervalą [X¯−3sd^ ; X¯+3sd^]
+
+c. Pašalinkite rastas išskirtis iš x vektorius ir nubrėžkite atnaujinto x histogramą.
+
+
+a)
+```{r}
+set.seed(1234567890)
+x <- rnorm(5000)
+m<-mean(x)
+m #vidurkis
+sn<-sd(x)
+sn #standartinis nuokrypis
+```
+b.
+```{r}
+r1=m-(3*sn)
+r2=m+(3*sn)
+
+i=0
+for(i in 1:5000){
+  if (x[i]<r1 | x[i]>r2){
+    print(paste("x=", x[i], "indeksas=", i))
+    i=i+1
+  }  
+}
+```
+c.
+
+```{r}
+k<-subset(x, x>r1 & x<r2)
+hist(k)
+```

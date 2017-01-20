@@ -1,0 +1,38 @@
+---
+title: "3 uzduotis"
+author: "Sandra Kozlovskaja"
+date: '2017 m sausis 20 d '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1.
+a.
+```{r}
+data=read.table("C:/Users/Administrator/Desktop/destytojo_Econometrics/Econometrics1/Egzaminas/data.csv", stringsAsFactors = FALSE, header=TRUE, sep = ";", skip=7)
+```
+b. Ar nera trukstamu reiksmiu? Ju neimame:
+```{r}
+data.gd <- subset(data, amzius != "MISSING", kaina != "MISSING")
+```
+
+c.
+```{r}
+plot(data.gd$amzius, data.gd$kaina, xlab = "Amzius", ylab = "Kaina")
+```
+
+Matome priklausomybe kainos nuo amziaus. Ji nera labai stipri.
+```{r}
+summary(data.gd)
+```
+Matome summary turimu reiksmiu. Kiek yra tokiu reiksmiu, ju tipai, kai kur traktuojama kaip skaiciai, kai kur kaip simboliai, nes ju matematines operacijos neturi reiksmes. Tarkime, amzius irasytas skaiciais, bet traktuojamas, kaip simboliai. O kur reiksmes - skaiciai, matome pagrindines charakteristikas.
+
+d.
+```{r}
+g=sample(data.gd, replace = FALSE)
+u=setdiff(data.gd, g)
+```
+
+#Neuzteko laiko
