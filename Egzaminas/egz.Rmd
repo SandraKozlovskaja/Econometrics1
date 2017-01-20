@@ -28,12 +28,13 @@ sn #standartinis nuokrypis
 ```
 b.
 ```{r}
-r1=m-(3*sn)
+r1=m-(3*sn) #pasiskaiciuojame to intervalo ribas
 r2=m+(3*sn)
 
 i=0
 for(i in 1:5000){
-  if (x[i]<r1 | x[i]>r2){
+  if (x[i]<r1 | x[i]>r2){ 
+#ir spausdiname reiksmes, kurie intervalui nepriklauso
     print(paste("x=", x[i], "indeksas=", i))
     i=i+1
   }  
@@ -43,5 +44,6 @@ c.
 
 ```{r}
 k<-subset(x, x>r1 & x<r2)
+#is x imame dabar tas reiksmes, kurios patenka i intervala ir irasome jas i kintamaji k
 hist(k)
 ```

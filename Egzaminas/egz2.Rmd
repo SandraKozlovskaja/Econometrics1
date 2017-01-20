@@ -64,10 +64,11 @@ length(v)/10000
 e.
 ```{r}
 i=0
-while (i<5){}
-  Z[i] = rnorm(100, mean=2, sd=sqrt(5))
+while (i<5){
+  Z[i] = rnorm(10000, mean=2, sd=sqrt(5))
   w=Z[i][abs(Z[i])>2]
   length(w)/10000
   
   i=i+1
+}
 ```
